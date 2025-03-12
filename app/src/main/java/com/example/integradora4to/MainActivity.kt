@@ -1,0 +1,76 @@
+package com.example.integradora4to
+
+import android.content.ClipData.Item
+import android.content.Intent
+import android.os.Bundle
+import android.widget.Button
+import android.widget.EditText
+import android.widget.TextView
+import android.widget.Toast
+import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.activity.viewModels
+import androidx.core.view.WindowInsetsCompat
+import com.example.integradora4to.ui.LoginViewModel
+import com.example.integradora4to.ui.LoginViewModelFactory
+
+class MainActivity : AppCompatActivity() {
+    private val loginViewModel: LoginViewModel by viewModels(){
+        LoginViewModelFactory(applicationContext)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
+        setContentView(R.layout.activity_main)
+
+        val inputEmail = findViewById<EditText>(R.id.email_edit_text)
+        val inputPassword = findViewById<EditText>(R.id.password_edit_text)
+        val buttonLogin = findViewById<Button>(R.id.btnLog_in)
+        val message = findViewById<TextView>(R.id.messages)
+        val signUp = findViewById<TextView>(R.id.signUp)
+
+
+        val savedToken = loginViewModel.getToken()
+        if (savedToken != null){
+            Toast.makeText(this, "User is already authenticated", Toast.LENGTH_LONG).show()
+            startActivity(Intent(this, DashboardActivity::class.java))
+            finish()
+        }
+
+        loginViewModel.loginResult.observe(this){ response ->
+            if(response!=null){
+                Toast.makeText(this, "Login successful: ${response.tkn}", Toast.LENGTH_LONG).show()
+                val intent = Intent(this, DashboardActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+        }
+
+        loginViewModel.errorMessage.observe(this){ error ->
+            if (error != null){
+                message.text = error
+                Toast.makeText(this, error, Toast.LENGTH_LONG).show()
+            }
+        }
+
+        buttonLogin.setOnClickListener(){
+            val email = inputEmail.text.toString()
+            val password = inputPassword.text.toString()
+            loginViewModel.login(email, password)
+        }
+
+        signUp.setOnClickListener(){
+            val goSignUp = Intent(this, RegisterActivity::class.java)
+            startActivity(goSignUp)
+            finish()
+        }
+
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            insets
+        }
+    }
+}

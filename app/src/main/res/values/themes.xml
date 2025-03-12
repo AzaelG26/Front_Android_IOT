@@ -1,0 +1,12 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.Integradora4to" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="windowActionBar">False</item>
+        <item name="windowNoTitle">True</item>
+    </style>
+
+    <style name="Theme.Integradora4to" parent="Base.Theme.Integradora4to" />
+    
+</resources>
