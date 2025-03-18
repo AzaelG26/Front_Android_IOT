@@ -42,11 +42,12 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
 
         toggle = ActionBarDrawerToggle(this, binding.drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close )
         binding.drawerLayout.addDrawerListener(toggle)
+        toggle.syncState()
 
 
 
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.setHomeButtonEnabled(true)
+        // supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        // supportActionBar?.setHomeButtonEnabled(true)
         val navigationView: NavigationView = binding.navView
 
         navigationView.setNavigationItemSelectedListener(this)
