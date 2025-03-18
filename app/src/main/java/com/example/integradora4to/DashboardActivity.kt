@@ -17,6 +17,7 @@ import androidx.core.view.GravityCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import com.example.integradora4to.databinding.ActivityDashboardBinding
 import com.google.android.material.navigation.NavigationView
 import kotlin.math.log
 
@@ -25,30 +26,32 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
         LoginViewModelFactory(applicationContext)
     }
 
-    private lateinit var drawer: DrawerLayout
+    // private lateinit var drawer: DrawerLayout
     private lateinit var toggle: ActionBarDrawerToggle
+    private lateinit var binding: ActivityDashboardBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_dashboard)
+        binding = ActivityDashboardBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         val toolbar: androidx.appcompat.widget.Toolbar = findViewById(R.id.toolbar_dashboard)
         setSupportActionBar(toolbar)
-        drawer = findViewById(R.id.drawer_layout)
+        // drawer = findViewById(R.id.drawer_layout)
 
-        toggle = ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close )
-        drawer.addDrawerListener(toggle)
+        toggle = ActionBarDrawerToggle(this, binding.drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close )
+        binding.drawerLayout.addDrawerListener(toggle)
 
 
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setHomeButtonEnabled(true)
-        val navigationView: NavigationView = findViewById(R.id.nav_view)
+        val navigationView: NavigationView = binding.navView
 
         navigationView.setNavigationItemSelectedListener(this)
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.drawer_layout)) { v, insets ->
+        ViewCompat.setOnApplyWindowInsetsListener(binding.drawerLayout) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
@@ -65,7 +68,7 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
                 logOut()
             }
         }
-        drawer.closeDrawer(GravityCompat.START)
+        binding.drawerLayout.closeDrawer(GravityCompat.START)
         return true
     }
 
