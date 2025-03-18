@@ -12,6 +12,7 @@ import com.example.integradora4to.network.RetrofitClient
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import org.json.JSONObject
 
 class LoginViewModel(context: Context): ViewModel() {
     private val sharedPreferences: SharedPreferences = context.getSharedPreferences("user_prefs", Context.MODE_PRIVATE)
@@ -22,19 +23,31 @@ class LoginViewModel(context: Context): ViewModel() {
     private val _errorMessage = MutableLiveData<String?>()
     val errorMessage: LiveData<String?> = _errorMessage
 
-    fun login(email: String, password: String){
+    fun login(email: String, password: String) {
         viewModelScope.launch {
             try {
-                val response: LoginResponse = withContext(Dispatchers.IO){
+                val response = withContext(Dispatchers.IO) {
                     RetrofitClient.apiService.logIn(LoginRequest(email, password))
                 }
-                saveToken(response.tkn)
-                _loginResult.postValue(response)
-            }catch (e: Exception){
-                _errorMessage.postValue("Error en la autenticación: ${e.message}")
+
+                if (response.tkn != null) {
+                    saveToken(response.tkn)
+                    _loginResult.postValue(response)
+                } else {
+                    _errorMessage.postValue(response.msg)
+                }
+
+            } catch (e: Exception) { // Captura cualquier error (HTTP, red, etc.)
+                val errorBody = (e as? retrofit2.HttpException)?.response()?.errorBody()?.string()
+                val errorMsg = errorBody?.let {
+                    JSONObject(it).optString("msg", "Error en la autenticación")
+                } ?: "Error en la autenticación: ${e.message}"
+
+                _errorMessage.postValue(errorMsg)
             }
         }
     }
+
 
     private fun saveToken(token: String){
         sharedPreferences.edit().putString("auth_token", token).apply()

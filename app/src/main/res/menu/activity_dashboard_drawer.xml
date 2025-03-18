@@ -27,6 +27,7 @@
                 android:title="Item 7" />
             <item
                 android:id="@+id/logout"
+                android:icon="@drawable/output_onlinepngtools"
                 android:title="Log out"
                 />
         </menu>
