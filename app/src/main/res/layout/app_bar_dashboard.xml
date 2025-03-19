@@ -9,15 +9,15 @@
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fitsSystemWindows="true"
-        >
+        android:background="#F1FFF7"
+        android:fitsSystemWindows="true">
+
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar_dashboard"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="#157F77"
+            android:background="#216874"
             app:layout_scrollFlags="scroll|enterAlways" />
-
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -25,24 +25,14 @@
             android:layout_height="130dp"
             android:background="@drawable/rounded_bottom_background"> <!-- Fondo redondeado -->
 
-            <!-- Contenido dentro del ConstraintLayout -->
             <TextView
-                android:id="@+id/constraintText"
+                android:id="@+id/welcomeText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Contenido adicional"
-                android:textSize="16sp"
+                android:text="Welcome user! 👋🏼"
+                android:textSize="20sp"
+                android:textColor="@color/white"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginTop="20dp" />
-
-            <Button
-                android:id="@+id/btnConstraintAction"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Acción adicional"
-                app:layout_constraintTop_toBottomOf="@id/constraintText"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginTop="20dp" />

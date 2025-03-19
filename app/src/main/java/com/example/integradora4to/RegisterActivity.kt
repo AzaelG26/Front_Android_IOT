@@ -39,6 +39,7 @@ class RegisterActivity: AppCompatActivity() {
                 finish()
             }
         }
+
         registerViewModel.errorMessage.observe(this){ error ->
             if (error != null){
                 Toast.makeText(this, error, Toast.LENGTH_LONG).show()

@@ -37,7 +37,7 @@ class LoginViewModel(context: Context): ViewModel() {
                     _errorMessage.postValue(response.msg)
                 }
 
-            } catch (e: Exception) { // Captura cualquier error (HTTP, red, etc.)
+            } catch (e: Exception) {
                 val errorBody = (e as? retrofit2.HttpException)?.response()?.errorBody()?.string()
                 val errorMsg = errorBody?.let {
                     JSONObject(it).optString("msg", "Error en la autenticación")

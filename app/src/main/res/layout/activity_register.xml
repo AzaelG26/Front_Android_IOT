@@ -72,7 +72,7 @@
             android:layout_width="350dp"
             android:layout_height="45dp"
             android:hint="Phone"
-            android:inputType="numberDecimal"
+            android:inputType="phone"
             android:paddingLeft="10dp"
             android:layout_marginTop="30dp"
             android:background="@drawable/input_border"
