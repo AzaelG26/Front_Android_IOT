@@ -44,7 +44,7 @@ class MainActivity : AppCompatActivity() {
 
         loginViewModel.loginResult.observe(this){ response ->
             if(response!=null){
-                Toast.makeText(this, "Login successful: ${response.tkn}", Toast.LENGTH_LONG).show()
+                Toast.makeText(this,  response.msg , Toast.LENGTH_LONG).show()
                 val intent = Intent(this, DashboardActivity::class.java)
                 startActivity(intent)
                 finish()
