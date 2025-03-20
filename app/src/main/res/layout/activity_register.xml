@@ -49,8 +49,7 @@
             android:textSize="15dp"
             android:textStyle="bold"
             app:layout_constraintTop_toBottomOf="@id/title_register"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginLeft="45dp"
+            app:layout_constraintStart_toStartOf="@id/title_register"
             />
 
         <EditText

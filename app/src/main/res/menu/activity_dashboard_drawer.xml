@@ -15,12 +15,12 @@
         android:title="Item 3" />
     </group>
 
-    <item android:title="Title 1">
+    <item android:title="Options">
         <menu>
             <item
-                android:id="@+id/nav_item_six"
+                android:id="@+id/nav_create_safe"
                 android:icon="@drawable/image_box"
-                android:title="Item 6" />
+                android:title="Create Safe" />
             <item
                 android:id="@+id/nav_item_seven"
                 android:icon="@drawable/image_box"

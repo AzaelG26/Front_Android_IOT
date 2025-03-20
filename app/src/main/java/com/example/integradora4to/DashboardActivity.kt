@@ -74,6 +74,7 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
             R.id.nav_item_one -> Toast.makeText(this, "item 1", Toast.LENGTH_SHORT).show()
             R.id.nav_item_two -> Toast.makeText(this, "item 2", Toast.LENGTH_SHORT).show()
             R.id.nav_item_three -> Toast.makeText(this, "item 3", Toast.LENGTH_SHORT).show()
+            R.id.nav_create_safe -> goToCreateSafe()
             R.id.logout -> {
                 Toast.makeText(this, "Cerrando sesión...",Toast.LENGTH_SHORT ).show()
                 logOut()
@@ -81,6 +82,11 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
         }
         binding.drawerLayout.closeDrawer(GravityCompat.START)
         return true
+    }
+    private fun goToCreateSafe(){
+        val intent = Intent(this, CreateSafeActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 
     private fun logOut(){
