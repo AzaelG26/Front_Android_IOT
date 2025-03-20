@@ -6,6 +6,7 @@ import android.content.res.Configuration
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.view.MenuItem
+import android.widget.TextView
 import android.widget.Toast
 import com.example.integradora4to.ui.LoginViewModel
 import com.example.integradora4to.ui.LoginViewModelFactory
@@ -26,9 +27,9 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
         LoginViewModelFactory(applicationContext)
     }
 
-    // private lateinit var drawer: DrawerLayout
     private lateinit var toggle: ActionBarDrawerToggle
     private lateinit var binding: ActivityDashboardBinding
+    private lateinit var welcomeText: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,7 +39,7 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
 
         val toolbar: androidx.appcompat.widget.Toolbar = findViewById(R.id.toolbar_dashboard)
         setSupportActionBar(toolbar)
-        // drawer = findViewById(R.id.drawer_layout)
+        supportActionBar?.setDisplayShowTitleEnabled(false)
 
         toggle = ActionBarDrawerToggle(this, binding.drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close )
         binding.drawerLayout.addDrawerListener(toggle)
@@ -46,9 +47,18 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
 
 
 
-        // supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        // supportActionBar?.setHomeButtonEnabled(true)
         val navigationView: NavigationView = binding.navView
+
+        // Get user name
+        welcomeText = findViewById(R.id.welcomeText)
+        val username = loginViewModel.getUsername()
+
+        welcomeText.text = if (!username.isNullOrEmpty()){
+            "Welcome $username 👋🏼"
+        }
+        else{
+            "Welcome user 👋🏼"
+        }
 
         navigationView.setNavigationItemSelectedListener(this)
 

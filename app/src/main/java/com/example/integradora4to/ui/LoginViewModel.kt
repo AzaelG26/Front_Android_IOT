@@ -31,7 +31,7 @@ class LoginViewModel(context: Context): ViewModel() {
                 }
 
                 if (response.tkn != null) {
-                    saveToken(response.tkn)
+                    saveToken(response.tkn, response.usr.username)
                     _loginResult.postValue(response)
                 } else {
                     _errorMessage.postValue(response.msg)
@@ -49,15 +49,19 @@ class LoginViewModel(context: Context): ViewModel() {
     }
 
 
-    private fun saveToken(token: String){
-        sharedPreferences.edit().putString("auth_token", token).apply()
+    private fun saveToken(token: String, username: String){
+        sharedPreferences.edit().putString("auth_token", token).putString("username", username).apply()
     }
 
     fun getToken(): String?{
         return sharedPreferences.getString("auth_token", null)
     }
 
+    fun getUsername(): String?{
+        return sharedPreferences.getString("username", null)
+    }
+
     fun logOut() {
-        sharedPreferences.edit().remove("auth_token").apply()
+        sharedPreferences.edit().remove("auth_token").remove("username").apply()
     }
 }
