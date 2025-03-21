@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.activity.viewModels
 import androidx.core.view.WindowInsetsCompat
+import com.example.integradora4to.databinding.ActivityMainBinding
 import com.example.integradora4to.ui.LoginViewModel
 import com.example.integradora4to.ui.LoginViewModelFactory
 
@@ -19,17 +20,19 @@ class MainActivity : AppCompatActivity() {
     private val loginViewModel: LoginViewModel by viewModels(){
         LoginViewModelFactory(applicationContext)
     }
+    private lateinit var binding: ActivityMainBinding // binding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        val inputEmail = findViewById<EditText>(R.id.email_edit_text)
-        val inputPassword = findViewById<EditText>(R.id.password_edit_text)
-        val buttonLogin = findViewById<Button>(R.id.btnLog_in)
-        val message = findViewById<TextView>(R.id.messages)
-        val signUp = findViewById<TextView>(R.id.signUp)
+        // val inputEmail = findViewById<EditText>(R.id.email_edit_text)
+        // val inputPassword = findViewById<EditText>(R.id.password_edit_text)
+        // val buttonLogin = findViewById<Button>(R.id.btnLog_in)
+        // val message = findViewById<TextView>(R.id.messages)
+        // val signUp = findViewById<TextView>(R.id.signUp)
 
 
         val savedToken = loginViewModel.getToken()
@@ -41,7 +44,7 @@ class MainActivity : AppCompatActivity() {
 
         loginViewModel.loginResult.observe(this){ response ->
             if(response!=null){
-                Toast.makeText(this, "Login successful: ${response.tkn}", Toast.LENGTH_LONG).show()
+                Toast.makeText(this,  response.msg , Toast.LENGTH_LONG).show()
                 val intent = Intent(this, DashboardActivity::class.java)
                 startActivity(intent)
                 finish()
@@ -50,24 +53,24 @@ class MainActivity : AppCompatActivity() {
 
         loginViewModel.errorMessage.observe(this){ error ->
             if (error != null){
-                message.text = error
+                binding.messages.text = error
                 Toast.makeText(this, error, Toast.LENGTH_LONG).show()
             }
         }
 
-        buttonLogin.setOnClickListener(){
-            val email = inputEmail.text.toString()
-            val password = inputPassword.text.toString()
+        binding.btnLogIn.setOnClickListener(){
+            val email = binding.emailEditText.text.toString()
+            val password = binding.passwordEditText.text.toString()
             loginViewModel.login(email, password)
         }
 
-        signUp.setOnClickListener(){
+        binding.signUp.setOnClickListener(){
             val goSignUp = Intent(this, RegisterActivity::class.java)
             startActivity(goSignUp)
             finish()
         }
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+        ViewCompat.setOnApplyWindowInsetsListener(binding.main) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
