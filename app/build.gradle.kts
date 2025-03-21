@@ -49,7 +49,7 @@ dependencies {
     implementation("androidx.drawerlayout:drawerlayout:1.1.1")
     implementation("androidx.coordinatorlayout:coordinatorlayout:1.1.0")
 
-
+    implementation ("com.airbnb.android:lottie:6.0.0")
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
     testImplementation(libs.junit)
