@@ -2,9 +2,9 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group>
         <item
-            android:id="@+id/nav_item_one"
+            android:id="@+id/nav_your_safes"
             android:icon="@drawable/image_box"
-            android:title="Item 1" />
+            android:title="Your safes" />
         <item
             android:id="@+id/nav_item_two"
             android:icon="@drawable/image_box"

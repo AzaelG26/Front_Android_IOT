@@ -19,6 +19,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.example.integradora4to.databinding.ActivityDashboardBinding
+import com.example.integradora4to.ui.TypeSafeActivity
 import com.google.android.material.navigation.NavigationView
 import kotlin.math.log
 
@@ -71,7 +72,7 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean{
         when(item.itemId){
-            R.id.nav_item_one -> Toast.makeText(this, "item 1", Toast.LENGTH_SHORT).show()
+            R.id.nav_your_safes -> goToYourSafes()
             R.id.nav_item_two -> Toast.makeText(this, "item 2", Toast.LENGTH_SHORT).show()
             R.id.nav_item_three -> Toast.makeText(this, "item 3", Toast.LENGTH_SHORT).show()
             R.id.nav_create_safe -> goToCreateSafe()
@@ -88,7 +89,11 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
         startActivity(intent)
         finish()
     }
-
+    private fun goToYourSafes(){
+        val goToYourSafes = Intent(this, TypeSafeActivity::class.java)
+        startActivity(goToYourSafes)
+        finish()
+    }
     private fun logOut(){
         loginViewModel.logOut()
         val intent = Intent(this, MainActivity::class.java)

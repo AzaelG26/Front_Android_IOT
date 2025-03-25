@@ -24,8 +24,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/registerContainer"
-        android:layout_width="415dp"
-        android:layout_height="572dp"
+        android:layout_width="414dp"
+        android:layout_height="513dp"
         android:background="@drawable/rounded_top_background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -90,21 +90,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/button2" />
 
-        <Button
-            android:id="@+id/button6"
-            android:layout_width="161dp"
-            android:layout_height="40dp"
-            android:backgroundTint="#3C7F8A"
-            android:paddingLeft="10dp"
-            android:text="+ Agregar "
-            android:textColor="#FFFF"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.934"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.064" />
-
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="51dp"
@@ -157,12 +142,12 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="68dp"
+        android:layout_marginTop="104dp"
         android:text="Select your Safe "
         android:textColor="#FFFFFF"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.467"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
