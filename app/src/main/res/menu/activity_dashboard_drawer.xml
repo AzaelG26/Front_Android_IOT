@@ -3,7 +3,7 @@
     <group>
         <item
             android:id="@+id/nav_your_safes"
-            android:icon="@drawable/image_box"
+            android:icon="@drawable/cajafuerte"
             android:title="Your safes" />
         <item
             android:id="@+id/nav_item_two"

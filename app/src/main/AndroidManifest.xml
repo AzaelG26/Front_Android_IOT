@@ -28,6 +28,7 @@
         <activity android:name=".DashboardActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".CreateSafeActivity" />
+        <activity android:name=".TypeOfSafeActivity" />
     </application>
 
 </manifest>
