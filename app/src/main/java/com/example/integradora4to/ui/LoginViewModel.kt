@@ -6,8 +6,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.integradora4to.models.LoginRequest
-import com.example.integradora4to.models.LoginResponse
+import com.example.integradora4to.models.request.LoginRequest
+import com.example.integradora4to.models.response.LoginResponse
 import com.example.integradora4to.network.RetrofitClient
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

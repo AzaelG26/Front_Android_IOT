@@ -1,6 +1,5 @@
 package com.example.integradora4to
 
-import android.content.ClipData.Item
 import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
@@ -17,11 +16,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.drawerlayout.widget.DrawerLayout
 import com.example.integradora4to.databinding.ActivityDashboardBinding
-import com.example.integradora4to.ui.TypeSafeActivity
+import com.example.integradora4to.ui.CreateSafeViewModel
 import com.google.android.material.navigation.NavigationView
-import kotlin.math.log
 
 class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     private val loginViewModel: LoginViewModel by viewModels{
@@ -85,12 +82,12 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
         return true
     }
     private fun goToCreateSafe(){
-        val intent = Intent(this, CreateSafeActivity::class.java)
-        startActivity(intent)
+        startActivity(Intent(this, CreateSafeActivity::class.java))
         finish()
     }
+
     private fun goToYourSafes(){
-        val goToYourSafes = Intent(this, TypeSafeActivity::class.java)
+        val goToYourSafes = Intent(this, TypeOfSafeActivity::class.java)
         startActivity(goToYourSafes)
         finish()
     }

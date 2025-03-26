@@ -1,4 +1,4 @@
-package com.example.integradora4to.models
+package com.example.integradora4to.models.response
 
 data class LoginResponse(
     val tkn: String? = null,

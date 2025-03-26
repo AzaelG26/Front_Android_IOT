@@ -4,14 +4,25 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Button
+import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModel
 import com.example.integradora4to.databinding.ActivityCreateSafeBinding
 import com.example.integradora4to.databinding.ActivityMainBinding
+import com.example.integradora4to.ui.CreateSafeViewModel
+import com.example.integradora4to.ui.LoginViewModel
+import com.example.integradora4to.ui.LoginViewModelFactory
 
 class CreateSafeActivity: AppCompatActivity() {
 
     private lateinit var binding: ActivityCreateSafeBinding
+    private val createSafeViewModel: CreateSafeViewModel by viewModels();
+    private val loginViewModel: LoginViewModel by viewModels{
+        LoginViewModelFactory(applicationContext)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,6 +34,39 @@ class CreateSafeActivity: AppCompatActivity() {
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowTitleEnabled(false)
+
+
+        binding.btnCS.setOnClickListener{
+            val nickname = binding.nicknameCS.text.toString().trim()
+
+            if (nickname.isEmpty()){
+                binding.errorCS.text = "Nickname is required"
+            }
+            else{
+                binding.errorCS.text = ""
+                createSafeViewModel.createSafe(nickname)
+            }
+        }
+
+        createSafeViewModel.createSafeResult.observe(this){ response ->
+            if (response != null){
+                Toast.makeText(this, "Safe created successfully!", Toast.LENGTH_SHORT).show()
+                goToDashboard()
+            }
+        }
+
+        createSafeViewModel.errorMessage.observe(this){ error ->
+            error?.let {
+                binding.errorCS.text = it
+            }
+        }
+
+
+        createSafeViewModel.navigateToLogin.observe(this){ navigate ->
+            if (navigate == true){
+                logOut()
+            }
+        }
 
     }
 
@@ -39,5 +83,13 @@ class CreateSafeActivity: AppCompatActivity() {
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP // Evita duplicados
         startActivity(intent)
         finish() // Se cierra CreateSafeActivity
+    }
+
+    private fun logOut() {
+        loginViewModel.logOut()
+        val intent = Intent(this, MainActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK // Borra historial
+        startActivity(intent)
+        finish()
     }
 }
