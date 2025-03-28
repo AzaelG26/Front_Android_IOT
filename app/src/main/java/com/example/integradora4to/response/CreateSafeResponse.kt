@@ -1,4 +1,4 @@
-package com.example.integradora4to.models.response
+package com.example.integradora4to.response
 
 data class CreateSafeResponse(
     val msg: String,

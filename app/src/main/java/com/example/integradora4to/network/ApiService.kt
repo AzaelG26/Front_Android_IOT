@@ -2,10 +2,10 @@ package com.example.integradora4to.network
 
 import com.example.integradora4to.models.request.CreateSafeRequest
 import com.example.integradora4to.models.request.LoginRequest
-import com.example.integradora4to.models.response.LoginResponse
+import com.example.integradora4to.response.LoginResponse
 import com.example.integradora4to.models.request.RegisterRequest
-import com.example.integradora4to.models.response.CreateSafeResponse
-import com.example.integradora4to.models.response.RegisterResponse
+import com.example.integradora4to.response.CreateSafeResponse
+import com.example.integradora4to.response.RegisterResponse
 import retrofit2.http.Body
 import retrofit2.http.Header
 import retrofit2.http.POST

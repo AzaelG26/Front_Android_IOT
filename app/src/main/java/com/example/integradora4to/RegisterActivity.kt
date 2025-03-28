@@ -14,9 +14,13 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.integradora4to.databinding.ActivityRegisterBinding
 import com.example.integradora4to.ui.RegisterViewModel
+import com.example.integradora4to.ui.RegisterViewModelFactory
 
 class RegisterActivity: AppCompatActivity() {
-    private val registerViewModel: RegisterViewModel by viewModels()
+    private val registerViewModel: RegisterViewModel by viewModels() {
+        RegisterViewModelFactory()
+    }
+
     private lateinit var binding: ActivityRegisterBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,13 +28,6 @@ class RegisterActivity: AppCompatActivity() {
         enableEdgeToEdge()
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        // val inputUserName = findViewById<EditText>(R.id.username_edit_text_rg)
-        // val inputPhone = findViewById<EditText>(R.id.phone_edit_text_rg)
-        // val inputEmail = findViewById<EditText>(R.id.email_edit_text_rg)
-        // val inputPassword = findViewById<EditText>(R.id.password_edit_text_rg)
-        // val btnRegister = findViewById<Button>(R.id.btnRegister)
-        // val backToLogin = findViewById<TextView>(R.id.backToLogin)
 
         registerViewModel.registerResult.observe(this){ response ->
             if (response != null){

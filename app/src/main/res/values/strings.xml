@@ -2,4 +2,10 @@
     <string name="app_name" >Integradora4to</string>
     <string name="navigation_drawer_open">Open</string>
     <string name="navigation_drawer_close">Close</string>
+
+    <string name="title">Confirm Open Safe</string>
+    <string name="supporting_text">Are you sure you want to open the safe?</string>
+    <string name="cancel">Cancel</string>
+    <string name="decline">Decline</string>
+    <string name="accept">Open</string>
 </resources>

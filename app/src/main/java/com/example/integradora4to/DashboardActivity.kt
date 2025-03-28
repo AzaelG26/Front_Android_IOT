@@ -5,6 +5,7 @@ import android.content.res.Configuration
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.view.MenuItem
+import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import com.example.integradora4to.ui.LoginViewModel
@@ -18,6 +19,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.integradora4to.databinding.ActivityDashboardBinding
 import com.example.integradora4to.ui.CreateSafeViewModel
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.navigation.NavigationView
 
 class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -52,13 +54,33 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
         val username = loginViewModel.getUsername()
 
         welcomeText.text = if (!username.isNullOrEmpty()){
-            "Welcome $username 👋🏼"
+            "Hello $username 👋🏼"
         }
         else{
             "Welcome user 👋🏼"
         }
 
         navigationView.setNavigationItemSelectedListener(this)
+
+        binding.content.findViewById<Button>(R.id.btn_open_safe).setOnClickListener {
+            MaterialAlertDialogBuilder(this)
+                .setTitle(resources.getString(R.string.title))
+                .setMessage(resources.getString(R.string.supporting_text))
+                .setNeutralButton(resources.getString(R.string.cancel)) { dialog, which ->
+                    // Respond to neutral button press
+                    dialog.dismiss()
+                }
+                .setNegativeButton(resources.getString(R.string.decline)) { dialog, which ->
+                    // Respond to negative button press
+                    dialog.dismiss()
+                }
+                .setPositiveButton(resources.getString(R.string.accept)) { dialog, which ->
+                    // Respond to positive button press
+                    // Aquí va la lógica para abrir la caja fuerte
+                    // openSafe()
+                }
+                .show()
+        }
 
         ViewCompat.setOnApplyWindowInsetsListener(binding.drawerLayout) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
