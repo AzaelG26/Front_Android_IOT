@@ -2,11 +2,9 @@ package com.example.integradora4to.repositories
 
 import android.content.Context
 import android.content.SharedPreferences
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import com.example.integradora4to.models.request.LoginRequest
 import com.example.integradora4to.network.RetrofitClient
-import com.example.integradora4to.response.LoginResponse
+import com.example.integradora4to.models.request.response.LoginResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.json.JSONObject

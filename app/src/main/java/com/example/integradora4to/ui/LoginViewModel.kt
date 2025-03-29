@@ -1,19 +1,12 @@
 package com.example.integradora4to.ui
 
-import android.content.Context
-import android.content.SharedPreferences
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.integradora4to.models.request.LoginRequest
-import com.example.integradora4to.response.LoginResponse
-import com.example.integradora4to.network.RetrofitClient
+import com.example.integradora4to.models.request.response.LoginResponse
 import com.example.integradora4to.repositories.LoginRepository
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import org.json.JSONObject
 
 class LoginViewModel(private val repository: LoginRepository): ViewModel() {
 

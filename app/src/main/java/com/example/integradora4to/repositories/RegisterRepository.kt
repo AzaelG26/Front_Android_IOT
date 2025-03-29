@@ -1,9 +1,8 @@
 package com.example.integradora4to.repositories
 import android.util.Log
-import androidx.lifecycle.viewModelScope
 import com.example.integradora4to.models.request.RegisterRequest
 import com.example.integradora4to.network.RetrofitClient
-import com.example.integradora4to.response.RegisterResponse
+import com.example.integradora4to.models.request.response.RegisterResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.json.JSONObject
