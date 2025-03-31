@@ -5,50 +5,64 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_auth"
+    android:background="@drawable/gris"
     tools:context=".MainActivity">
 
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottieAnimation"
+        android:layout_width="309dp"
+        android:layout_height="273dp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/animation" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.3" />
+        app:layout_constraintGuide_begin="204dp" />
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/login_container"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_width="390dp"
+        android:layout_height="442dp"
         android:background="@drawable/rounded_top_background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.476"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/guideline"
-        app:layout_constraintVertical_bias="1.0">
+        app:layout_constraintVertical_bias="0.411">
 
         <TextView
             android:id="@+id/title_login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="28dp"
             android:layout_marginRight="200dp"
             android:text="Sign In"
-            android:textColor="#216874"
+            android:textColor="#F3C623"
             android:textSize="40dp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.728"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/login_container" />
+
 
         <TextView
             android:id="@+id/textLogin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:text="Please sign in to continue"
-            android:textColor="#216874"
+            android:textColor="#000"
             android:textSize="15dp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@id/title_login"
@@ -56,22 +70,24 @@
 
         <EditText
             android:id="@+id/email_edit_text"
-            android:layout_width="350dp"
-            android:layout_height="45dp"
-            android:layout_marginTop="80dp"
+            android:layout_width="339dp"
+            android:layout_height="42dp"
+            android:layout_marginTop="132dp"
             android:background="@drawable/input_border"
             android:hint="Email"
             android:inputType="textEmailAddress"
+
             android:paddingLeft="10dp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.509"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/title_login" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
             android:id="@+id/password_edit_text"
             android:layout_width="350dp"
             android:layout_height="45dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="44dp"
             android:background="@drawable/input_border"
             android:hint="Password"
             android:inputType="textPassword"
@@ -91,17 +107,19 @@
             app:layout_constraintStart_toStartOf="@id/password_edit_text"
             app:layout_constraintTop_toBottomOf="@id/password_edit_text" />
 
+
         <Button
             android:id="@+id/btnLog_in"
             android:layout_width="350dp"
             android:layout_height="50dp"
-            android:layout_marginTop="60dp"
-            android:backgroundTint="#216874"
+            android:layout_marginTop="44dp"
+            android:backgroundTint="#000"
             android:text="Log In"
-            android:textColor="@color/white"
+            android:textColor="#F3C623"
             android:textSize="20dp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.65"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/password_edit_text" />
 
@@ -109,12 +127,13 @@
             android:id="@+id/accountQuestion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="28dp"
             android:layout_marginRight="100dp"
             android:text="Don't have an account?"
-            android:textColor="@color/black"
+            android:textColor="#000"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.302"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/btnLog_in" />
 
@@ -123,11 +142,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="28dp"
             android:clickable="true"
             android:focusable="true"
             android:text="Sign up"
-            android:textColor="#216874"
+            android:textColor="#F3C623"
             android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@id/accountQuestion"
             app:layout_constraintTop_toBottomOf="@id/btnLog_in" />
