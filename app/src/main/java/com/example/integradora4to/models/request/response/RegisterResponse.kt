@@ -1,4 +1,4 @@
-package com.example.integradora4to.models.response
+package com.example.integradora4to.models.request.response
 
 data class RegisterResponse (
     val msg: String,

@@ -75,6 +75,7 @@
             android:layout_marginTop="132dp"
             android:background="@drawable/input_border"
             android:hint="Email"
+            android:textColor="@color/black"
             android:inputType="textEmailAddress"
 
             android:paddingLeft="10dp"
@@ -90,6 +91,7 @@
             android:layout_marginTop="44dp"
             android:background="@drawable/input_border"
             android:hint="Password"
+            android:textColor="@color/black"
             android:inputType="textPassword"
             android:paddingLeft="10dp"
             app:layout_constraintEnd_toEndOf="parent"
