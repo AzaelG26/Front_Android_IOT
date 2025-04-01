@@ -22,9 +22,9 @@
                 android:icon="@drawable/image_box"
                 android:title="Create Safe" />
             <item
-                android:id="@+id/nav_item_seven"
+                android:id="@+id/nav_update_pin"
                 android:icon="@drawable/image_box"
-                android:title="Item 7" />
+                android:title="Update pin" />
             <item
                 android:id="@+id/logout"
                 android:icon="@drawable/output_onlinepngtools"

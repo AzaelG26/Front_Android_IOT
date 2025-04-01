@@ -18,7 +18,7 @@ class LoginRepository(context: Context) {
                 RetrofitClient.apiService.logIn(LoginRequest(email, password))
             }
             if (response.tkn != null) {
-                saveToken(response.tkn, response.usr.username)
+                saveOnSharedPreferences(response.tkn, response.usr.username, response.usr.id)
                 Result.success(response)
             } else {
                 Result.failure(Exception(response.msg))
@@ -34,8 +34,8 @@ class LoginRepository(context: Context) {
         }
     }
 
-    private fun saveToken(token: String, username: String){
-        sharedPreferences.edit().putString("auth_token", token).putString("username", username).apply()
+    private fun saveOnSharedPreferences(token: String, username: String,userId: String){
+        sharedPreferences.edit().putString("auth_token", token).putString("username", username).putString("user_id", userId).apply()
     }
 
     fun getToken(): String?{

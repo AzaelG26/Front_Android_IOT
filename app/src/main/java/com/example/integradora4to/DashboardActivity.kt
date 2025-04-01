@@ -18,6 +18,7 @@ import androidx.core.view.GravityCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.integradora4to.databinding.ActivityDashboardBinding
+import com.example.integradora4to.mqtt.MqttHelper
 import com.example.integradora4to.ui.CreateSafeViewModel
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.navigation.NavigationView
@@ -31,11 +32,26 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
     private lateinit var binding: ActivityDashboardBinding
     private lateinit var welcomeText: TextView
 
+    private lateinit var mqttHelper: MqttHelper
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         binding = ActivityDashboardBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        mqttHelper = MqttHelper("tcp://3.14.129.17:1883", "AndroidClient-${System.currentTimeMillis()}")
+        mqttHelper.connect("admin", "password123",
+            onConnected = {
+                println("Conectado a MQTT")
+            },
+            onError = { e ->
+                Toast.makeText(this, "Error al conectar MQTT: ${e.message}", Toast.LENGTH_LONG).show()
+            }
+        )
+
+
 
         val toolbar: androidx.appcompat.widget.Toolbar = findViewById(R.id.toolbar_dashboard)
         setSupportActionBar(toolbar)
@@ -76,8 +92,7 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
                 }
                 .setPositiveButton(resources.getString(R.string.accept)) { dialog, which ->
                     // Respond to positive button press
-                    // Aquí va la lógica para abrir la caja fuerte
-                    // openSafe()
+                    openSafeWithMQTT()
                 }
                 .show()
         }
@@ -89,11 +104,21 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
         }
     }
 
+    private fun openSafeWithMQTT() {
+        mqttHelper.publish("vault/remote/open", "OPEN")
+        Toast.makeText(this, "Caja fuerte abierta", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        mqttHelper.disconnect()
+    }
+
     override fun onNavigationItemSelected(item: MenuItem): Boolean{
         when(item.itemId){
             R.id.nav_your_safes -> goToYourSafes()
             R.id.nav_item_two -> Toast.makeText(this, "item 2", Toast.LENGTH_SHORT).show()
-            R.id.nav_item_three -> Toast.makeText(this, "item 3", Toast.LENGTH_SHORT).show()
+            R.id.nav_update_pin -> goToUpdatePin()
             R.id.nav_create_safe -> goToCreateSafe()
             R.id.logout -> {
                 Toast.makeText(this, "Cerrando sesión...",Toast.LENGTH_SHORT ).show()
@@ -103,8 +128,14 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
         binding.drawerLayout.closeDrawer(GravityCompat.START)
         return true
     }
+
     private fun goToCreateSafe(){
         startActivity(Intent(this, CreateSafeActivity::class.java))
+        finish()
+    }
+
+    private fun goToUpdatePin(){
+        startActivity(Intent(this, UpdatePinActivity::class.java))
         finish()
     }
 
@@ -113,6 +144,7 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
         startActivity(goToYourSafes)
         finish()
     }
+
     private fun logOut(){
         loginViewModel.logOut()
         val intent = Intent(this, MainActivity::class.java)

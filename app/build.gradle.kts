@@ -54,6 +54,8 @@ dependencies {
     implementation ("com.airbnb.android:lottie:6.0.0")
 
     implementation("com.google.android.material:material:1.13.0-alpha12")
+
+    implementation ("org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.2.5")
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
     testImplementation(libs.junit)

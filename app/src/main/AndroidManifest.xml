@@ -24,11 +24,14 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
         <activity android:name=".DashboardActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".CreateSafeActivity" />
         <activity android:name=".TypeOfSafeActivity" />
+        <activity android:name=".UpdatePinActivity" />
+
     </application>
 
 </manifest>
