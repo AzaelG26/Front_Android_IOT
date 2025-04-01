@@ -71,6 +71,7 @@
                     android:layout_marginTop="30dp"
                     android:background="@drawable/rounded_container"
                     android:elevation="1dp"
+                    android:backgroundTint="#fff"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/btn_open_safe">
@@ -92,12 +93,8 @@
                         android:id="@+id/txt_temperature"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Temperature current️"
-                        android:textSize="15dp"
-                        android:textColor="@color/black"
-                        android:layout_marginBottom="20dp"
-                        app:layout_constraintTop_toBottomOf="@id/txt_degrees"
-                        app:layout_constraintStart_toStartOf="@id/txt_degrees"
+                        android:layout_marginLeft="40dp"
+                        android:text="Temperature current 🌡️: 0 °C"
                         app:layout_constraintBottom_toBottomOf="parent"
                         />
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -111,9 +108,7 @@
                     android:layout_height="80dp"
                     android:layout_marginTop="40dp"
                     android:background="@drawable/rounded_container"
-                    android:elevation="1dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintTop_toBottomOf="@id/container_temperature"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/container_temperature">
 
@@ -121,11 +116,9 @@
                         android:id="@+id/txt_humedity_percent"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="30dp"
-                        android:text=" 0 % 💧"
-                        android:textColor="@color/black"
-                        android:textSize="20dp"
-                        app:layout_constraintBottom_toBottomOf="@id/txt_humedity"
+                        android:layout_marginLeft="40dp"
+                        android:text="Humedity current💧: 0 %"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -149,7 +142,6 @@
                     android:layout_height="80dp"
                     android:layout_marginTop="40dp"
                     android:background="@drawable/rounded_container"
-                    android:elevation="1dp"
                     app:layout_constraintTop_toBottomOf="@id/container_humidity"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent">
@@ -158,11 +150,9 @@
                         android:id="@+id/txt_proximity_percent"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="30dp"
-                        android:text="0 cm 📏"
-                        android:textColor="@color/black"
-                        android:textSize="20dp"
-                        app:layout_constraintBottom_toBottomOf="@id/txt_proximity"
+                        android:layout_marginLeft="40dp"
+                        android:text="Proximity current📏: 0 cm"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 

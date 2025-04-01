@@ -20,6 +20,7 @@
         android:textSize="18sp"
         android:textStyle="bold"
         app:cornerRadius="20dp"
+        app:rippleColor="#00000"
         tools:layout_editor_absoluteX="5dp"
         tools:layout_editor_absoluteY="188dp" />
 

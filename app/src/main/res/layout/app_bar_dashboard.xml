@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#EDEDF7"
     tools:context=".DashboardActivity">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -16,7 +17,7 @@
             android:id="@+id/toolbar_dashboard"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="#00193A55"
+            android:background="#193A55"
             app:layout_scrollFlags="scroll|enterAlways" />
 
 
@@ -29,10 +30,9 @@
                 android:id="@+id/welcomeText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Hello user! 👋🏼"
-                android:textSize="30dp"
+                android:text="Welcome user! 👋🏼"
+                android:textSize="20sp"
                 android:textColor="@color/white"
-                android:textStyle="bold"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 android:padding="30dp"/>
