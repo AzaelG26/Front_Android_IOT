@@ -10,7 +10,7 @@
         android:id="@+id/toolbar_c_s"
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:background="#193A55"
+        android:background="#00193A55"
         android:paddingTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -39,7 +39,7 @@
         android:textStyle="bold"
         android:textSize="30dp"
         android:textColor="#193A55"
-        app:layout_constraintTop_toTopOf="@id/guideline3"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
@@ -93,4 +93,4 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+

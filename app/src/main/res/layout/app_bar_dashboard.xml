@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="#EDEDF7"
+    android:background="#00EDEDF7"
     tools:context=".DashboardActivity">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -16,14 +16,15 @@
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar_dashboard"
             android:layout_width="match_parent"
+            android:backgroundTint="#00FFFFFF"
             android:layout_height="?attr/actionBarSize"
-            android:background="#193A55"
             app:layout_scrollFlags="scroll|enterAlways" />
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="150dp"
+            android:background="#00FFFFFF"
             > <!-- Fondo redondeado -->
 
             <TextView
@@ -32,6 +33,7 @@
                 android:layout_height="wrap_content"
                 android:text="Welcome user! 👋🏼"
                 android:textSize="20sp"
+                android:background="#00FFFFFF"
                 android:textColor="@color/white"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

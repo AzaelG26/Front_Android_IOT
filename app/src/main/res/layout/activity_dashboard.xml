@@ -10,6 +10,7 @@
     tools:openDrawer="start">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:background="#00FFFFFF"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -28,14 +29,13 @@
             app:layout_constraintVertical_bias="1.0"
             android:background="@drawable/rounded_top_background_dashboard"
             android:elevation="10dp"
+            android:padding="40dp"
             tools:layout_editor_absoluteX="0dp">
 
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="50dp"
-                android:layout_marginTop="10dp"
                 >
 
                 <TextView
@@ -56,12 +56,26 @@
                     android:layout_width="140dp"
                     android:layout_height="50dp"
                     android:layout_marginTop="40dp"
+                    android:layout_marginRight="5dp"
                     android:text="Open Safe🔓"
                     android:textColor="@color/white"
                     android:backgroundTint="#216874"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintStart_toEndOf="@id/txt_sensors"
-                    app:layout_constraintEnd_toEndOf="parent" />
+                    app:layout_constraintEnd_toEndOf="@id/btn_refresh" />
+
+                <ImageButton
+                    android:id="@+id/btn_refresh"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/rounded_button"
+                    android:src="@drawable/refresh_24dp_ffffff_fill0_wght400_grad0_opsz24"
+                    app:tint="@color/white"
+                    android:contentDescription="Refrescar"
+                    app:layout_constraintStart_toEndOf="@id/btn_open_safe"
+                    app:layout_constraintTop_toTopOf="@id/btn_open_safe"
+                    app:layout_constraintEnd_toEndOf="parent"/>
+
 
                 <!-- Temperature-->
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -80,28 +94,28 @@
                         android:id="@+id/txt_degrees"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="0 °C 🌡"
+                        android:text="0 °C "
                         android:textSize="20dp"
                         android:textColor="@color/black"
                         android:layout_marginLeft="30dp"
+                        android:layout_marginTop="20dp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toBottomOf="@id/txt_temperature"
+                        app:layout_constraintBottom_toTopOf="@id/txt_temperature"
                         />
 
                     <TextView
                         android:id="@+id/txt_temperature"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="40dp"
-                        android:text="Temperature current 🌡️: 0 °C"
+                        android:text="Temperature current 🌡️"
+                        android:textColor="@color/black"
+                        app:layout_constraintTop_toTopOf="@id/txt_degrees"
+                        app:layout_constraintStart_toStartOf="@id/txt_degrees"
                         app:layout_constraintBottom_toBottomOf="parent"
                         />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <!-- HUMIDITY-->
-
-                <!-- PROXIMITY -->
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/container_humidity"
                     android:layout_width="0dp"
@@ -110,30 +124,30 @@
                     android:background="@drawable/rounded_container"
                     app:layout_constraintTop_toBottomOf="@id/container_temperature"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/container_temperature">
+                    app:layout_constraintEnd_toEndOf="parent">
 
                     <TextView
-                        android:id="@+id/txt_humedity_percent"
+                        android:id="@+id/txt_humidity_value"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="40dp"
-                        android:text="Humedity current💧: 0 %"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <TextView
-                        android:id="@+id/txt_humedity"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="20dp"
-                        android:text="Humedity current️"
+                        android:text="0 %"
+                        android:textSize="20dp"
                         android:textColor="@color/black"
-                        android:textSize="15dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="@id/txt_humedity_percent"
-                        app:layout_constraintTop_toBottomOf="@id/txt_humedity_percent" />
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginTop="20dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toTopOf="@id/txt_humidity" />
 
+                    <TextView
+                        android:id="@+id/txt_humidity"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Humidity current 💧"
+                        android:textColor="@color/black"
+                        app:layout_constraintTop_toTopOf="@id/txt_humidity_value"
+                        app:layout_constraintStart_toStartOf="@id/txt_humidity_value"
+                        app:layout_constraintBottom_toBottomOf="parent" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -147,27 +161,27 @@
                     app:layout_constraintEnd_toEndOf="parent">
 
                     <TextView
-                        android:id="@+id/txt_proximity_percent"
+                        android:id="@+id/txt_proximity_value"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="40dp"
-                        android:text="Proximity current📏: 0 cm"
-                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:text="0 cm"
+                        android:textSize="20dp"
+                        android:textColor="@color/black"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginTop="20dp"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toTopOf="@id/txt_proximity" />
 
                     <TextView
                         android:id="@+id/txt_proximity"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="20dp"
-                        android:text="Proximity current"
+                        android:text="Proximity current 📏"
                         android:textColor="@color/black"
-                        android:textSize="15dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="@id/txt_proximity_percent"
-                        app:layout_constraintTop_toBottomOf="@id/txt_proximity_percent" />
-
+                        app:layout_constraintTop_toTopOf="@id/txt_proximity_value"
+                        app:layout_constraintStart_toStartOf="@id/txt_proximity_value"
+                        app:layout_constraintBottom_toBottomOf="parent" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -175,6 +189,7 @@
         </ScrollView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="#216874"/> <!-- Blanco con 50% de transparencia -->
+    <corners android:radius="40dp"/> <!-- Redondear todas las esquinas -->
+</shape>
