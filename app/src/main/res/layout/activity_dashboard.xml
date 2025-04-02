@@ -149,42 +149,6 @@
                         app:layout_constraintStart_toStartOf="@id/txt_humidity_value"
                         app:layout_constraintBottom_toBottomOf="parent" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/container_proximity"
-                    android:layout_width="0dp"
-                    android:layout_height="80dp"
-                    android:layout_marginTop="40dp"
-                    android:background="@drawable/rounded_container"
-                    app:layout_constraintTop_toBottomOf="@id/container_humidity"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent">
-
-                    <TextView
-                        android:id="@+id/txt_proximity_value"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="0 cm"
-                        android:textSize="20dp"
-                        android:textColor="@color/black"
-                        android:layout_marginLeft="30dp"
-                        android:layout_marginTop="20dp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toTopOf="@id/txt_proximity" />
-
-                    <TextView
-                        android:id="@+id/txt_proximity"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Proximity current 📏"
-                        android:textColor="@color/black"
-                        app:layout_constraintTop_toTopOf="@id/txt_proximity_value"
-                        app:layout_constraintStart_toStartOf="@id/txt_proximity_value"
-                        app:layout_constraintBottom_toBottomOf="parent" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
 

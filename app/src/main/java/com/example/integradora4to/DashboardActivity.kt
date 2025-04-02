@@ -17,15 +17,24 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.lifecycleScope
 import com.example.integradora4to.databinding.ActivityDashboardBinding
 import com.example.integradora4to.mqtt.MqttHelper
-import com.example.integradora4to.ui.CreateSafeViewModel
+import com.example.integradora4to.repositories.SensorRepository
+import com.example.integradora4to.ui.SensorViewModel
+import com.example.integradora4to.ui.SensorViewModelFactory
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.navigation.NavigationView
+import kotlinx.coroutines.launch
 
 class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     private val loginViewModel: LoginViewModel by viewModels{
         LoginViewModelFactory(applicationContext)
+    }
+    val sensorRepository = SensorRepository()
+
+    private val sensorViewModel: SensorViewModel by viewModels {
+        SensorViewModelFactory(SensorRepository())
     }
 
     private lateinit var toggle: ActionBarDrawerToggle
@@ -96,6 +105,20 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
                 }
                 .show()
         }
+        sensorViewModel.fetchSensorData()
+
+        sensorViewModel.sensorData.observe(this){ data->
+            data?.let {
+                binding.txtDegrees.text = data.temperatura.toString()
+                binding.txtHumidityValue.text = data.humedad.toString()
+            }
+        }
+
+        binding.btnRefresh.setOnClickListener(){
+            lifecycleScope.launch {
+                sensorViewModel.fetchSensorData()
+            }
+        }
 
         ViewCompat.setOnApplyWindowInsetsListener(binding.drawerLayout) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -120,6 +143,7 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
             R.id.nav_item_two -> Toast.makeText(this, "item 2", Toast.LENGTH_SHORT).show()
             R.id.nav_update_pin -> goToUpdatePin()
             R.id.nav_create_safe -> goToCreateSafe()
+            R.id.nav_user -> goToYourAccount()
             R.id.logout -> {
                 Toast.makeText(this, "Cerrando sesión...",Toast.LENGTH_SHORT ).show()
                 logOut()
@@ -131,6 +155,10 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
 
     private fun goToCreateSafe(){
         startActivity(Intent(this, CreateSafeActivity::class.java))
+        finish()
+    }
+    private fun goToYourAccount(){
+        startActivity(Intent(this, UserActivity::class.java))
         finish()
     }
 

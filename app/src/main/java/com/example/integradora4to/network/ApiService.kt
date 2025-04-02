@@ -8,7 +8,9 @@ import com.example.integradora4to.models.request.UpdateBoxRequest
 import com.example.integradora4to.models.request.response.CreateSafeResponse
 import com.example.integradora4to.models.request.response.RegisterResponse
 import com.example.integradora4to.models.request.response.GetBoxResponse
+import com.example.integradora4to.models.request.response.SensorDataResponse
 import com.example.integradora4to.models.request.response.UpdateBoxResponse
+import com.example.integradora4to.models.request.response.User
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Header
@@ -31,4 +33,10 @@ interface ApiService {
 
     @PUT("api/box/update-pin")
     suspend fun updatePinOfBox(@Header("Authorization") authorization: String, @Body request: UpdateBoxRequest): UpdateBoxResponse
+
+    @GET("api/user/user/{id}")
+    suspend fun getUser(@Path("id") id: String): User
+
+    @GET("api/sensor/dht11")
+    suspend fun getSensorData(): SensorDataResponse
 }

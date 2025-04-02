@@ -26,6 +26,10 @@
                 android:icon="@drawable/image_box"
                 android:title="Update pin" />
             <item
+                android:id="@+id/nav_user"
+                android:icon="@drawable/image_box"
+                android:title="Your Account" />
+            <item
                 android:id="@+id/logout"
                 android:icon="@drawable/output_onlinepngtools"
                 android:title="Log out"

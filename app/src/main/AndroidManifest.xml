@@ -31,7 +31,7 @@
         <activity android:name=".CreateSafeActivity" />
         <activity android:name=".TypeOfSafeActivity" />
         <activity android:name=".UpdatePinActivity" />
-
+        <activity android:name=".UserActivity" />
     </application>
 
 </manifest>
