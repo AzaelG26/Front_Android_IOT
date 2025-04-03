@@ -5,6 +5,7 @@
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
         <item name="windowActionBar">False</item>
         <item name="windowNoTitle">True</item>
+        <item name="boxStrokeColor">#F3C623</item>
     </style>
 
     <style name="Theme.Integradora4to" parent="Base.Theme.Integradora4to" />

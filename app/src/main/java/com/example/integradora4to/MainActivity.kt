@@ -2,6 +2,7 @@ package com.example.integradora4to
 
 import android.content.ClipData.Item
 import android.content.Intent
+import android.content.res.ColorStateList
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -11,6 +12,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.activity.viewModels
+import androidx.core.content.ContextCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.integradora4to.databinding.ActivityMainBinding
 import com.example.integradora4to.ui.LoginViewModel
@@ -41,6 +43,8 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this, DashboardActivity::class.java))
             finish()
         }
+
+        setupInputBorders()
 
         loginViewModel.loginResult.observe(this){ response ->
             if(response!=null){
@@ -75,5 +79,44 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+    }
+
+    private fun setupInputBorders() {
+        // Definir los colores para los diferentes estados
+        val colorFocused = ContextCompat.getColor(this, R.color.white) // #F3C623
+        val colorDefault = ContextCompat.getColor(this, R.color.white) // Mismo color para todos los estados
+
+        // Crear el ColorStateList
+        val states = arrayOf(
+            intArrayOf(android.R.attr.state_focused),  // Estado enfocado
+            intArrayOf(-android.R.attr.state_focused)   // Estado normal
+        )
+
+        val colors = intArrayOf(
+            colorFocused,
+            colorDefault
+        )
+
+        val borderColorStateList = ColorStateList(states, colors)
+
+        // Aplicar a ambos campos
+        binding.emailEditTextLayout.apply {
+            setBoxStrokeColorStateList(borderColorStateList)
+            boxStrokeWidth = 1 // Grosor en estado normal (dp)
+            boxStrokeWidthFocused = 2 // Grosor cuando está enfocado (dp)
+            hintTextColor = ColorStateList.valueOf(colorDefault)
+        }
+
+        binding.passwordEditTextLayout.apply {
+            setBoxStrokeColorStateList(borderColorStateList)
+            boxStrokeWidth = 1
+            boxStrokeWidthFocused = 2
+            hintTextColor = ColorStateList.valueOf(colorDefault)
+            setEndIconTintList(ColorStateList.valueOf(colorDefault))
+        }
+
+        // También puedes cambiar el color del texto
+        binding.emailEditText.setTextColor(colorDefault)
+        binding.passwordEditText.setTextColor(colorDefault)
     }
 }
