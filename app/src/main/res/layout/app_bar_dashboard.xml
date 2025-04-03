@@ -34,7 +34,7 @@
                 android:text="Welcome user! 👋🏼"
                 android:textSize="20sp"
                 android:background="#00FFFFFF"
-                android:textColor="@color/white"
+                android:textColor="#F3C623"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 android:padding="30dp"/>
