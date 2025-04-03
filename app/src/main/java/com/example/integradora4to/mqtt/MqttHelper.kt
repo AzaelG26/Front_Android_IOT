@@ -6,18 +6,22 @@ class MqttHelper(serverUri: String, clientId: String) {
     private val mqttClient = MqttClient(serverUri, clientId, MemoryPersistence())
 
     fun connect(username: String?, password: String?, onConnected: () -> Unit, onError: (Exception) -> Unit) {
-        val options = MqttConnectOptions().apply {
-            isCleanSession = true
-            this.userName = username
-            password?.let { this.password = it.toCharArray() }
-        }
-
-        try {
-            mqttClient.connect(options)
-            onConnected()
-        } catch (e: MqttException) {
-            onError(e)
-        }
+        Thread {
+            try {
+                val options = MqttConnectOptions().apply {
+                    isCleanSession = true
+                    isAutomaticReconnect = true
+                    this.userName = username
+                    password?.let { this.password = it.toCharArray() }
+                }
+                mqttClient.connect(options)
+                onConnected()
+            } catch (e: MqttException) {
+                android.os.Handler(android.os.Looper.getMainLooper()).post {
+                    onError(e)
+                }
+            }
+        }.start()
     }
 
     fun publish(topic: String, message: String) {

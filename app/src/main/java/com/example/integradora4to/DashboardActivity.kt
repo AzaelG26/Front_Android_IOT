@@ -50,13 +50,15 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
         binding = ActivityDashboardBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        mqttHelper = MqttHelper("tcp://3.14.129.17:1883", "AndroidClient-${System.currentTimeMillis()}")
+        mqttHelper = MqttHelper("tcp://18.117.12.2:1883", "AndroidClient-${System.currentTimeMillis()}")
         mqttHelper.connect("admin", "password123",
             onConnected = {
                 println("Conectado a MQTT")
             },
             onError = { e ->
-                Toast.makeText(this, "Error al conectar MQTT: ${e.message}", Toast.LENGTH_LONG).show()
+                runOnUiThread {
+                    Toast.makeText(this, "Error de conexión: ${e.message}", Toast.LENGTH_SHORT).show()
+                }
             }
         )
 

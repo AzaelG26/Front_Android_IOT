@@ -5,6 +5,8 @@ import com.example.integradora4to.models.request.LoginRequest
 import com.example.integradora4to.models.request.response.LoginResponse
 import com.example.integradora4to.models.request.RegisterRequest
 import com.example.integradora4to.models.request.UpdateBoxRequest
+import com.example.integradora4to.models.request.UpdateUserRequest
+import com.example.integradora4to.models.request.UpdateUserResponse
 import com.example.integradora4to.models.request.response.CreateSafeResponse
 import com.example.integradora4to.models.request.response.RegisterResponse
 import com.example.integradora4to.models.request.response.GetBoxResponse
@@ -39,4 +41,7 @@ interface ApiService {
 
     @GET("api/sensor/dht11")
     suspend fun getSensorData(): SensorDataResponse
+
+    @PUT("api/user/user/profile")
+    suspend fun updateUser(@Header("Authorization") authorization: String, @Body request: UpdateUserRequest): UpdateUserResponse
 }
