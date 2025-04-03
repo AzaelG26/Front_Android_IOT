@@ -5,10 +5,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_t_of_s"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#BF2B2020"
+        android:paddingTop="16dp"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/barra"
-        android:layout_width="411dp"
+        android:layout_width="match_parent"
         android:layout_height="194dp"
         android:background="@drawable/rounded_container2"
         android:paddingTop="16dp"
@@ -52,7 +63,7 @@
         app:layout_constraintVertical_bias="0.0">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/toolbar_t_of_s"
+            android:id="@+id/xx"
             android:layout_width="382dp"
             android:layout_height="478dp"
             android:layout_marginBottom="24dp"
