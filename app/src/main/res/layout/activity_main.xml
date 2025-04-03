@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_auth"
+    android:background="@drawable/gris"
     tools:context=".MainActivity">
 
 
@@ -29,6 +29,14 @@
         app:layout_constraintTop_toBottomOf="@id/guideline"
         app:layout_constraintVertical_bias="1.0">
 
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="204dp" />
+
         <TextView
             android:id="@+id/title_login"
             android:layout_width="wrap_content"
@@ -36,7 +44,7 @@
             android:layout_marginTop="30dp"
             android:layout_marginRight="200dp"
             android:text="Sign In"
-            android:textColor="#216874"
+            android:textColor="#F3C623"
             android:textSize="40dp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -48,7 +56,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Please sign in to continue"
-            android:textColor="#216874"
+            android:textColor="#000"
             android:textSize="15dp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@id/title_login"
@@ -125,9 +133,9 @@
             android:layout_width="350dp"
             android:layout_height="50dp"
             android:layout_marginTop="50dp"
-            android:backgroundTint="#216874"
+            android:backgroundTint="#000"
             android:text="Log In"
-            android:textColor="@color/white"
+            android:textColor="#F3C623"
             android:textSize="20dp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -160,11 +168,24 @@
             android:clickable="true"
             android:focusable="true"
             android:text="Sign up"
-            android:textColor="#216874"
+            android:textColor="#F3C623"
             android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@id/accountQuestion"
             app:layout_constraintTop_toBottomOf="@id/btnLog_in" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottieAnimation"
+        android:layout_width="360dp"
+        android:layout_height="249dp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.486"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/animation" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

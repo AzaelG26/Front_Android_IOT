@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
-    <solid android:color="#90626060"/> <!-- Blanco con 50% de transparencia -->
-    <corners android:radius="40dp"/> <!-- Redondear todas las esquinas -->
+    <!-- Color más transparente (60% de transparencia en lugar de 56%) -->
+    <solid android:color="#B4282828"/> <!-- Cambiado de #90626060 a #60606060 -->
+
+    <!-- Bordes inferiores redondeados, superiores planos -->
+    <corners
+        android:bottomLeftRadius="40dp"
+        android:bottomRightRadius="40dp"
+        android:topLeftRadius="0dp"
+        android:topRightRadius="0dp"/>
 </shape>
