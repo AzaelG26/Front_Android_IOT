@@ -15,6 +15,7 @@ class SensorViewModel(private val repository: SensorRepository): ViewModel() {
     private val _errorMessage = MutableLiveData<String?>()
     val errorMessage: LiveData<String?> = _errorMessage
 
+
     fun fetchSensorData(){
         viewModelScope.launch {
             val result = repository.getSensorData()

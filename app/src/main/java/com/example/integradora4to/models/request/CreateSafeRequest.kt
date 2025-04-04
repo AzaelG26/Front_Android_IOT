@@ -5,3 +5,4 @@ data class CreateSafeRequest(
     val pin: Number
 )
 
+

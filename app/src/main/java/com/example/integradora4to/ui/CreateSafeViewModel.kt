@@ -18,6 +18,7 @@ import retrofit2.HttpException
 class CreateSafeViewModel(application: Application): AndroidViewModel(application) {
     private val sharedPreferences: SharedPreferences = application.getSharedPreferences("user_prefs", Application.MODE_PRIVATE)
 
+
     private val _createSafeResult = MutableLiveData<CreateSafeResponse?>()
     val createSafeResult: LiveData<CreateSafeResponse?> = _createSafeResult
 

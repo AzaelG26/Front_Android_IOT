@@ -36,4 +36,5 @@ class SensorRepository {
             Result.failure(Exception("Error en la petición: ${e.message}"))
         }
     }
+
 }

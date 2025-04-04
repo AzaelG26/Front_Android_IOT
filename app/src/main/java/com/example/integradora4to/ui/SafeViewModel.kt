@@ -15,6 +15,7 @@ class SafeViewModel(private val repository: SafeRepository): ViewModel() {
     private val _boxData = MutableLiveData<GetBoxResponse?>()
     val boxData: LiveData<GetBoxResponse?> get() = _boxData
 
+
     private val _errorMessage = MutableLiveData<String?>()
     val errorMessage: LiveData<String?> get() = _errorMessage
 

@@ -12,3 +12,4 @@ data class User(
     val email: String,
     val status: Boolean
 )
+

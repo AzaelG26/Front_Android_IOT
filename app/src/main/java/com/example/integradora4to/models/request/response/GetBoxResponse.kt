@@ -5,3 +5,4 @@ data class GetBoxResponse(
     val box: List<Box>?
 )
 
+

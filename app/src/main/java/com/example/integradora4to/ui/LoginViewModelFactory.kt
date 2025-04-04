@@ -8,6 +8,7 @@ import com.example.integradora4to.repositories.LoginRepository
 class LoginViewModelFactory(private val context: Context): ViewModelProvider.Factory {
     private val repository = LoginRepository(context)
 
+
     override fun <T : ViewModel> create(modelClass: Class<T>): T{
         if (modelClass.isAssignableFrom(LoginViewModel::class.java)){
             @Suppress("UNCHECKED_CAST")

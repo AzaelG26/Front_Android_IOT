@@ -69,6 +69,7 @@ class UserActivity: AppCompatActivity() {
                 }
             }
         }
+
         userViewModel.navigateToLogin.observe(this) { navigate ->
             if (navigate == true){
                 logOut()

@@ -11,3 +11,4 @@ data class Box(
     val status: Boolean,
     val userId: String
 )
+

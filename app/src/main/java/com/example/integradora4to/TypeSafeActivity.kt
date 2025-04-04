@@ -67,6 +67,7 @@ class TypeOfSafeActivity : AppCompatActivity(){
         safeViewModel.getBoxByUserId()
     }
 
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean{
         if (item.itemId == android.R.id.home){
             goToDashboard()
