@@ -30,7 +30,7 @@ class CreateSafeViewModel(application: Application): AndroidViewModel(applicatio
 
 
 
-    fun createSafe(nickname: String){
+    fun createSafe(nickname: String, pin: Number){
         viewModelScope.launch {
             try {
                 val token = getToken()
@@ -40,11 +40,10 @@ class CreateSafeViewModel(application: Application): AndroidViewModel(applicatio
                 }
 
                 val response: CreateSafeResponse = withContext(Dispatchers.IO) {
-                    RetrofitClient.apiService.createSafe("Bearer $token", CreateSafeRequest(nickname))
+                    RetrofitClient.apiService.createSafe("Bearer $token", CreateSafeRequest(nickname, pin))
                 }
 
                 _createSafeResult.postValue(response)
-
 
             }catch (e: Exception){
                 val errorBody = (e as? HttpException)?.response()?.errorBody()?.string()
