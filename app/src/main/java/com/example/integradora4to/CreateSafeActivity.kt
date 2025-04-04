@@ -1,6 +1,7 @@
 package com.example.integradora4to
 
 import android.content.Intent
+import android.content.res.ColorStateList
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -9,6 +10,7 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModel
 import com.example.integradora4to.databinding.ActivityCreateSafeBinding
 import com.example.integradora4to.databinding.ActivityMainBinding
@@ -35,16 +37,28 @@ class CreateSafeActivity: AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowTitleEnabled(false)
 
+        setupInputBorders()
 
-        binding.btnCS.setOnClickListener{
+        binding.btnCS.setOnClickListener {
             val nickname = binding.nicknameCS.text.toString().trim()
+            val pinEditText = binding.pinCS
 
-            if (nickname.isEmpty()){
+            if (nickname.isEmpty()) {
                 binding.errorCS.text = "Nickname is required"
-            }
-            else{
+            } else {
                 binding.errorCS.text = ""
-                createSafeViewModel.createSafe(nickname)
+
+                val pinString = pinEditText.text.toString().trim()
+                if (pinString.isNotEmpty()) {
+                    try {
+                        val pin = pinString.toInt()
+                        createSafeViewModel.createSafe(nickname, pin)
+                    } catch (e: NumberFormatException) {
+                        binding.errorCS.text = "Invalid PIN format"
+                    }
+                } else {
+                    binding.errorCS.text = "PIN is required"
+                }
             }
         }
 
@@ -68,6 +82,44 @@ class CreateSafeActivity: AppCompatActivity() {
             }
         }
 
+    }
+    private fun setupInputBorders() {
+        // Definir los colores para los diferentes estados
+        val colorFocused = ContextCompat.getColor(this, R.color.white) // #F3C623
+        val colorDefault = ContextCompat.getColor(this, R.color.white) // Mismo color para todos los estados
+
+        // Crear el ColorStateList
+        val states = arrayOf(
+            intArrayOf(android.R.attr.state_focused),  // Estado enfocado
+            intArrayOf(-android.R.attr.state_focused)   // Estado normal
+        )
+
+        val colors = intArrayOf(
+            colorFocused,
+            colorDefault
+        )
+
+        val borderColorStateList = ColorStateList(states, colors)
+
+        // Aplicar a ambos campos
+        binding.nicknameLayout.apply {
+            setBoxStrokeColorStateList(borderColorStateList)
+            boxStrokeWidth = 1 // Grosor en estado normal (dp)
+            boxStrokeWidthFocused = 2 // Grosor cuando está enfocado (dp)
+            hintTextColor = ColorStateList.valueOf(colorDefault)
+        }
+
+        binding.pinLayout.apply {
+            setBoxStrokeColorStateList(borderColorStateList)
+            boxStrokeWidth = 1
+            boxStrokeWidthFocused = 2
+            hintTextColor = ColorStateList.valueOf(colorDefault)
+            setEndIconTintList(ColorStateList.valueOf(colorDefault))
+        }
+
+        // También puedes cambiar el color del texto
+        binding.nicknameCS.setTextColor(colorDefault)
+        binding.pinCS.setTextColor(colorDefault)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean{
