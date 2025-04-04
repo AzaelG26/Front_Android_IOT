@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/background_auth"
+    android:background="#14141B"
+
     android:id="@+id/drawer_layout"
     tools:context=".DashboardActivity"
     tools:openDrawer="start">
@@ -35,17 +36,15 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                >
+                android:layout_height="wrap_content">
 
                 <TextView
                     android:id="@+id/txt_sensors"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="Sensor data"
-                    android:textColor="#193A55"
-                    android:textSize="20dp"
-                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:textSize="17dp"
                     android:layout_marginTop="50dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toStartOf="@id/btn_open_safe"
@@ -58,8 +57,8 @@
                     android:layout_marginTop="40dp"
                     android:layout_marginRight="5dp"
                     android:text="Open Safe🔓"
-                    android:textColor="@color/white"
-                    android:backgroundTint="#216874"
+                    android:textColor="#3F3F3F"
+                    android:backgroundTint="#C5A42F"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintStart_toEndOf="@id/txt_sensors"
                     app:layout_constraintEnd_toEndOf="@id/btn_refresh" />

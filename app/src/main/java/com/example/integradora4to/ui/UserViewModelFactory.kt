@@ -13,4 +13,5 @@ class UserViewModelFactory(private val userRepository: UserRepository, private v
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }
+
 }

@@ -26,6 +26,7 @@ class UpdatePinActivity : AppCompatActivity() {
     private val loginViewModel: LoginViewModel by viewModels { LoginViewModelFactory(applicationContext) }
 
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()

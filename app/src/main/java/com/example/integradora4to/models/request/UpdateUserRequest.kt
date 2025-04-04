@@ -7,3 +7,4 @@ data class UpdateUserRequest(
     val password: String?,
     val passwordConfirmation: String?
 )
+

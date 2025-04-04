@@ -62,6 +62,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+
         binding.btnLogIn.setOnClickListener(){
             val email = binding.emailEditText.text.toString()
             val password = binding.passwordEditText.text.toString()

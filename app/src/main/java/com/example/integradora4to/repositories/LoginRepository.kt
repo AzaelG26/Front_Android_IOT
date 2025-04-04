@@ -9,6 +9,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.json.JSONObject
 
+
 class LoginRepository(context: Context) {
     private val sharedPreferences: SharedPreferences = context.getSharedPreferences("user_prefs", Context.MODE_PRIVATE)
 
@@ -49,4 +50,5 @@ class LoginRepository(context: Context) {
     fun logOut() {
         sharedPreferences.edit().remove("auth_token").remove("username").apply()
     }
+
 }

@@ -12,4 +12,5 @@ class SensorViewModelFactory(private val repository: SensorRepository) : ViewMod
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }
+
 }

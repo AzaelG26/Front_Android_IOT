@@ -4,3 +4,4 @@ data class CreateSafeRequest(
     val nickname: String
 )
 
+

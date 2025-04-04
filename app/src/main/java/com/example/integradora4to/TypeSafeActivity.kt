@@ -23,6 +23,7 @@ class TypeOfSafeActivity : AppCompatActivity(){
         supportActionBar?.setDisplayShowTitleEnabled(false)
     }
 
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean{
         if (item.itemId == android.R.id.home){
             goToDashboard()
