@@ -48,7 +48,7 @@ class LoginRepository(context: Context) {
     }
 
     fun logOut() {
-        sharedPreferences.edit().remove("auth_token").remove("username").apply()
+        sharedPreferences.edit().remove("auth_token").remove("username").remove("selected_safe").apply()
     }
 
 }

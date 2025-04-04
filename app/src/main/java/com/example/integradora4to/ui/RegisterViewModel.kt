@@ -1,11 +1,11 @@
 package com.example.integradora4to.ui
 
+import RegisterRepository
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.integradora4to.models.request.response.RegisterResponse
-import com.example.integradora4to.repositories.RegisterRepository
 import kotlinx.coroutines.launch
 
 class RegisterViewModel(private val repository: RegisterRepository): ViewModel() {

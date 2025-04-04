@@ -7,6 +7,7 @@
     android:background="#14141B"
     tools:context=".UpdatePinActivity">
 
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_up_spin"
         android:layout_width="match_parent"
@@ -16,6 +17,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -49,6 +51,17 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/txt_title" />
 
+        <Spinner
+            android:id="@+id/spinner_vaults"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/spinner_background"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_subtitle" />
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/til_new_pin"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -65,7 +78,7 @@
             app:boxCornerRadiusTopStart="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_subtitle">
+            app:layout_constraintTop_toBottomOf="@id/spinner_vaults">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/et_new_pin"
@@ -75,6 +88,7 @@
                 android:maxLength="4"
                 android:textColor="@color/white" />
         </com.google.android.material.textfield.TextInputLayout>
+
 
         <Button
             android:id="@+id/btn_update"
@@ -90,7 +104,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/til_new_pin"
             style="@style/Widget.MaterialComponents.Button.Icon"
-            android:textAllCaps="false"/>
+            android:textAllCaps="false"
+            />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

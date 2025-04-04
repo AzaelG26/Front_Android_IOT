@@ -4,6 +4,7 @@ import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
 import android.os.PersistableBundle
+import android.util.Log
 import android.view.MenuItem
 import android.widget.Button
 import android.widget.TextView
@@ -20,7 +21,12 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
 import com.example.integradora4to.databinding.ActivityDashboardBinding
 import com.example.integradora4to.mqtt.MqttHelper
+import com.example.integradora4to.network.ApiService
+import com.example.integradora4to.network.RetrofitClient
+import com.example.integradora4to.repositories.SafeRepository
 import com.example.integradora4to.repositories.SensorRepository
+import com.example.integradora4to.ui.SafeViewModel
+import com.example.integradora4to.ui.SafeViewModelFactory
 import com.example.integradora4to.ui.SensorViewModel
 import com.example.integradora4to.ui.SensorViewModelFactory
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -35,6 +41,10 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
 
     private val sensorViewModel: SensorViewModel by viewModels {
         SensorViewModelFactory(SensorRepository())
+    }
+
+    private val safeViewModel: SafeViewModel by viewModels {
+        SafeViewModelFactory(SafeRepository(RetrofitClient.apiService, applicationContext))
     }
 
     private lateinit var toggle: ActionBarDrawerToggle
@@ -121,12 +131,46 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
                 sensorViewModel.fetchSensorData()
             }
         }
+        safeViewModel.getBoxByUserId()
+
+        safeViewModel.boxData.observe(this) { response ->
+            Log.d("DashboardActivity", "boxData: $response") // Agrega esto para ver si realmente entra en el bloque
+            response?.let {
+                val nicknames = it.box?.map { box -> box.nickname } ?: emptyList()
+                showSelectionDialog(nicknames)
+            } ?: run {
+                Toast.makeText(this, "No se encontraron cajas fuertes", Toast.LENGTH_SHORT).show()
+            }
+        }
 
         ViewCompat.setOnApplyWindowInsetsListener(binding.drawerLayout) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+    }
+
+    private fun showSelectionDialog(nicknames: List<String>) {
+        if (nicknames.isEmpty()) {
+            Toast.makeText(this, "No hay cajas fuertes registradas", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        var selectedOption = 0 // Índice por defecto
+
+        MaterialAlertDialogBuilder(this)
+            .setTitle("Selecciona una caja fuerte")
+            .setSingleChoiceItems(nicknames.toTypedArray(), selectedOption) { _, which ->
+                selectedOption = which
+            }
+            .setPositiveButton("Confirmar") { _, _ ->
+                Toast.makeText(this, "Seleccionaste: ${nicknames[selectedOption]}", Toast.LENGTH_SHORT).show()
+            }
+            .setNegativeButton("Cancelar") { dialog, _ ->
+                dialog.dismiss()
+            }
+            .setCancelable(false)
+            .show()
     }
 
     private fun openSafeWithMQTT() {

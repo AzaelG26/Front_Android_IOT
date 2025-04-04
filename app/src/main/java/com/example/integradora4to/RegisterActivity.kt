@@ -2,6 +2,7 @@ package com.example.integradora4to
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.widget.Button
 import android.widget.EditText
@@ -30,6 +31,7 @@ class RegisterActivity: AppCompatActivity() {
         setContentView(binding.root)
 
         registerViewModel.registerResult.observe(this){ response ->
+            Log.d("RegisterActivity", "Register result: $response")
             if (response != null){
                 Toast.makeText(this, "registration successful", Toast.LENGTH_LONG).show()
                 startActivity(Intent(this, MainActivity::class.java))
@@ -44,10 +46,10 @@ class RegisterActivity: AppCompatActivity() {
         }
 
         binding.btnRegister.setOnClickListener{
-            val username = binding.usernameEditTextRg.text.toString()
-            val phone = binding.phoneEditTextRg.text.toString()
-            val email = binding.emailEditTextRg.text.toString()
-            val password = binding.passwordEditTextRg.text.toString()
+            val username = binding.usernameEditTextRg.editText?.text.toString()
+            val phone = binding.phoneEditTextRg.editText?.text.toString()
+            val email = binding.emailEditTextRg.editText?.text.toString()
+            val password = binding.passwordEditTextRg.editText?.text.toString()
             registerViewModel.register(username, phone, email, password )
         }
 
