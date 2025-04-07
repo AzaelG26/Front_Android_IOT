@@ -1,6 +1,7 @@
 package com.example.integradora4to
 
 import android.content.Intent
+import android.content.res.ColorStateList
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.ArrayAdapter
@@ -9,6 +10,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContextCompat
 import com.example.integradora4to.databinding.ActivityUpdatePinBinding
 import com.example.integradora4to.models.request.response.GetBoxResponse
 import com.example.integradora4to.network.RetrofitClient
@@ -38,7 +40,7 @@ class UpdatePinActivity : AppCompatActivity() {
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowTitleEnabled(false)
-
+        setupInputBorders()
         safeViewModel.navigateToLogin.observe(this) { navigate ->
             if (navigate == true) {
                 logOut()
@@ -80,6 +82,32 @@ class UpdatePinActivity : AppCompatActivity() {
             }
         }
 
+    }
+
+    private fun setupInputBorders() {
+        val colorFocused = ContextCompat.getColor(this, R.color.white)
+        val colorDefault = ContextCompat.getColor(this, R.color.white)
+
+        val states = arrayOf(
+            intArrayOf(android.R.attr.state_focused),
+            intArrayOf(-android.R.attr.state_focused)
+        )
+
+        val colors = intArrayOf(
+            colorFocused,
+            colorDefault
+        )
+
+        val borderColorStateList = ColorStateList(states, colors)
+
+        binding.tilNewPin.apply {
+            setBoxStrokeColorStateList(borderColorStateList)
+            boxStrokeWidth = 1
+            boxStrokeWidthFocused = 2
+            hintTextColor = ColorStateList.valueOf(colorDefault)
+        }
+
+        binding.etNewPin.setTextColor(colorDefault)
     }
 
 

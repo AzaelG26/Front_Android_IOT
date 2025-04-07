@@ -26,12 +26,15 @@ class LoginRepository(context: Context) {
             }
         }catch (e: Exception) {
             val errorBody = (e as? retrofit2.HttpException)?.response()?.errorBody()?.string()
-            val errorMsg = errorBody?.let {
-                JSONObject(it).optString("msg", "Error en la autenticación")
-            } ?: "Error en la autenticación: ${e.message}"
+            val errorMsg = try {
+                // Intentamos parsear como JSON
+                JSONObject(errorBody).optString("msg", "Error en la autenticación")
+            } catch (jsonException: Exception) {
+                // Si no es JSON, usamos el string tal cual
+                errorBody ?: "Error en la autenticación: ${e.message}"
+            }
 
             Result.failure(Exception(errorMsg))
-
         }
     }
 

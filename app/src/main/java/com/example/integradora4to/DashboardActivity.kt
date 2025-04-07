@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.os.PersistableBundle
 import android.util.Log
 import android.view.MenuItem
+import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
@@ -82,7 +83,12 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
         binding.drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
 
-
+        binding.btnOpenSafe.visibility = View.INVISIBLE
+        binding.btnRefresh.visibility = View.INVISIBLE
+        binding.txtSensors.visibility = View.INVISIBLE
+        binding.containerTemperature.visibility = View.INVISIBLE
+        binding.containerHumidity.visibility = View.INVISIBLE
+        binding.txtBoxNotFound.visibility = View.INVISIBLE
 
         val navigationView: NavigationView = binding.navView
 
@@ -137,8 +143,35 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
             Log.d("DashboardActivity", "boxData: $response") // Agrega esto para ver si realmente entra en el bloque
             response?.let {
                 val nicknames = it.box?.map { box -> box.nickname } ?: emptyList()
-                showSelectionDialog(nicknames)
+                if (nicknames.isNotEmpty()) {
+                    binding.btnOpenSafe.visibility = View.VISIBLE
+                    binding.btnRefresh.visibility = View.VISIBLE
+                    binding.txtSensors.visibility = View.VISIBLE
+                    binding.containerTemperature.visibility = View.VISIBLE
+                    binding.containerHumidity.visibility = View.VISIBLE
+                    binding.txtBoxNotFound.visibility = View.INVISIBLE
+
+
+                    showSelectionDialog(nicknames)
+                } else {
+                    binding.btnOpenSafe.visibility = View.INVISIBLE
+                    binding.btnRefresh.visibility = View.INVISIBLE
+                    binding.txtSensors.visibility = View.INVISIBLE
+                    binding.containerTemperature.visibility = View.INVISIBLE
+                    binding.containerHumidity.visibility = View.INVISIBLE
+                    binding.txtBoxNotFound.visibility = View.VISIBLE
+
+                    Toast.makeText(this, "No se encontraron cajas fuertes", Toast.LENGTH_SHORT).show()
+                }
             } ?: run {
+                // Respuesta nula, deshabilitar el botón
+                binding.btnOpenSafe.visibility = View.INVISIBLE
+                binding.btnRefresh.visibility = View.INVISIBLE
+                binding.txtSensors.visibility = View.INVISIBLE
+                binding.containerTemperature.visibility = View.INVISIBLE
+                binding.containerHumidity.visibility = View.INVISIBLE
+                binding.txtBoxNotFound.visibility = View.VISIBLE
+
                 Toast.makeText(this, "No se encontraron cajas fuertes", Toast.LENGTH_SHORT).show()
             }
         }
@@ -186,7 +219,6 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
     override fun onNavigationItemSelected(item: MenuItem): Boolean{
         when(item.itemId){
             R.id.nav_your_safes -> goToYourSafes()
-            R.id.nav_item_two -> Toast.makeText(this, "item 2", Toast.LENGTH_SHORT).show()
             R.id.nav_update_pin -> goToUpdatePin()
             R.id.nav_create_safe -> goToCreateSafe()
             R.id.nav_user -> goToYourAccount()
