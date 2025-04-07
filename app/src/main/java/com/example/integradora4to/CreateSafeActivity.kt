@@ -84,14 +84,12 @@ class CreateSafeActivity: AppCompatActivity() {
 
     }
     private fun setupInputBorders() {
-        // Definir los colores para los diferentes estados
-        val colorFocused = ContextCompat.getColor(this, R.color.white) // #F3C623
-        val colorDefault = ContextCompat.getColor(this, R.color.white) // Mismo color para todos los estados
+        val colorFocused = ContextCompat.getColor(this, R.color.white)
+        val colorDefault = ContextCompat.getColor(this, R.color.white)
 
-        // Crear el ColorStateList
         val states = arrayOf(
-            intArrayOf(android.R.attr.state_focused),  // Estado enfocado
-            intArrayOf(-android.R.attr.state_focused)   // Estado normal
+            intArrayOf(android.R.attr.state_focused),
+            intArrayOf(-android.R.attr.state_focused)
         )
 
         val colors = intArrayOf(
@@ -101,11 +99,10 @@ class CreateSafeActivity: AppCompatActivity() {
 
         val borderColorStateList = ColorStateList(states, colors)
 
-        // Aplicar a ambos campos
         binding.nicknameLayout.apply {
             setBoxStrokeColorStateList(borderColorStateList)
-            boxStrokeWidth = 1 // Grosor en estado normal (dp)
-            boxStrokeWidthFocused = 2 // Grosor cuando está enfocado (dp)
+            boxStrokeWidth = 1
+            boxStrokeWidthFocused = 2
             hintTextColor = ColorStateList.valueOf(colorDefault)
         }
 
@@ -117,7 +114,6 @@ class CreateSafeActivity: AppCompatActivity() {
             setEndIconTintList(ColorStateList.valueOf(colorDefault))
         }
 
-        // También puedes cambiar el color del texto
         binding.nicknameCS.setTextColor(colorDefault)
         binding.pinCS.setTextColor(colorDefault)
     }
@@ -132,15 +128,15 @@ class CreateSafeActivity: AppCompatActivity() {
 
     private fun goToDashboard() {
         val intent = Intent(this, DashboardActivity::class.java)
-        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP // Evita duplicados
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
         startActivity(intent)
-        finish() // Se cierra CreateSafeActivity
+        finish()
     }
 
     private fun logOut() {
         loginViewModel.logOut()
         val intent = Intent(this, MainActivity::class.java)
-        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK // Borra historial
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(intent)
         finish()
     }

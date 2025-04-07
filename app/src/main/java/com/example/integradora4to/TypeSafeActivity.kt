@@ -78,9 +78,9 @@ class TypeOfSafeActivity : AppCompatActivity(){
 
     private fun goToDashboard() {
         val intent = Intent(this, DashboardActivity::class.java)
-        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP // Evita duplicados
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
         startActivity(intent)
-        finish() // Se cierra CreateSafeActivity
+        finish()
     }
 
     private fun updateList(boxes: List<Box>) {

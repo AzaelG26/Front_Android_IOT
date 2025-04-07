@@ -78,7 +78,7 @@ class UserActivity: AppCompatActivity() {
 
 
         userViewModel.user.observe(this) { user ->
-            if (user != null) { // Check if user is not null
+            if (user != null) {
                 binding.etUsername.setText(user.username)
                 binding.etPhone.setText(user.phone)
                 binding.etEmail.setText(user.email)
@@ -98,14 +98,14 @@ class UserActivity: AppCompatActivity() {
 
     private fun goToDashboard() {
         val intent = Intent(this, DashboardActivity::class.java)
-        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP // Evita duplicados
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
         startActivity(intent)
-        finish() // Se cierra CreateSafeActivity
+        finish()
     }
     private fun logOut() {
         loginViewModel.logOut()
         val intent = Intent(this, MainActivity::class.java)
-        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK // Borra historial
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(intent)
         finish()
     }

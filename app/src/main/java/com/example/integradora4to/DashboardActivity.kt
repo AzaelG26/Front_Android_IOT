@@ -140,7 +140,7 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
         safeViewModel.getBoxByUserId()
 
         safeViewModel.boxData.observe(this) { response ->
-            Log.d("DashboardActivity", "boxData: $response") // Agrega esto para ver si realmente entra en el bloque
+            Log.d("DashboardActivity", "boxData: $response")
             response?.let {
                 val nicknames = it.box?.map { box -> box.nickname } ?: emptyList()
                 if (nicknames.isNotEmpty()) {
@@ -254,7 +254,7 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
     private fun logOut(){
         loginViewModel.logOut()
         val intent = Intent(this, MainActivity::class.java)
-        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK // Borra historial
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(intent)
         finish()
     }

@@ -83,14 +83,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupInputBorders() {
-        // Definir los colores para los diferentes estados
-        val colorFocused = ContextCompat.getColor(this, R.color.white) // #F3C623
-        val colorDefault = ContextCompat.getColor(this, R.color.white) // Mismo color para todos los estados
+        val colorFocused = ContextCompat.getColor(this, R.color.white)
+        val colorDefault = ContextCompat.getColor(this, R.color.white)
 
-        // Crear el ColorStateList
         val states = arrayOf(
-            intArrayOf(android.R.attr.state_focused),  // Estado enfocado
-            intArrayOf(-android.R.attr.state_focused)   // Estado normal
+            intArrayOf(android.R.attr.state_focused),
+            intArrayOf(-android.R.attr.state_focused)
         )
 
         val colors = intArrayOf(
@@ -100,11 +98,10 @@ class MainActivity : AppCompatActivity() {
 
         val borderColorStateList = ColorStateList(states, colors)
 
-        // Aplicar a ambos campos
         binding.emailEditTextLayout.apply {
             setBoxStrokeColorStateList(borderColorStateList)
-            boxStrokeWidth = 1 // Grosor en estado normal (dp)
-            boxStrokeWidthFocused = 2 // Grosor cuando está enfocado (dp)
+            boxStrokeWidth = 1
+            boxStrokeWidthFocused = 2
             hintTextColor = ColorStateList.valueOf(colorDefault)
         }
 
@@ -116,7 +113,6 @@ class MainActivity : AppCompatActivity() {
             setEndIconTintList(ColorStateList.valueOf(colorDefault))
         }
 
-        // También puedes cambiar el color del texto
         binding.emailEditText.setTextColor(colorDefault)
         binding.passwordEditText.setTextColor(colorDefault)
     }

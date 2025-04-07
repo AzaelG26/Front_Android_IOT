@@ -50,21 +50,17 @@ class CreateSafeViewModel(application: Application): AndroidViewModel(applicatio
             }catch (e: Exception) {
                 val errorBody = (e as? HttpException)?.response()?.errorBody()?.string()
 
-                // Agrega un log para ver qué se recibe en errorBody
                 Log.d("CreateSafeViewModel", "Error Body: $errorBody")
 
                 val errorMsg = errorBody?.let {
                     try {
-                        // Verifica si el cuerpo del error es un JSON válido
                         val jsonError = JSONObject(it)
                         jsonError.optString("msg", "Error al crear la caja fuerte")
                     } catch (jsonException: JSONException) {
-                        // Si no es un JSON, maneja el error con el mensaje completo
                         "Error desconocido: $it"
                     }
                 } ?: "Error al crear la caja fuerte: ${e.message}"
 
-                // Verifica si el error es por token expirado
                 if (errorMsg.contains("Token expirado", ignoreCase = true)) {
                     _errorMessage.postValue("Token expirado. Por favor, inicie sesión de nuevo.")
                     _navigateToLogin.postValue(true)

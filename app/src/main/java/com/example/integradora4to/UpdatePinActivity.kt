@@ -129,9 +129,9 @@ class UpdatePinActivity : AppCompatActivity() {
     private fun goToDashboard() {
         val intent = Intent(this, DashboardActivity::class.java)
         intent.flags =
-            Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP // Evita duplicados
+            Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
         startActivity(intent)
-        finish() // Se cierra CreateSafeActivity
+        finish()
     }
     private fun logOut() {
         loginViewModel.logOut()
